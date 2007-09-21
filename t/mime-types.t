@@ -7,7 +7,7 @@ use lib 't';
 use MY::slurp;
 
 # Test non-CSS responses when we've supplemented MIME-Types list
-plan tests => 2, have_lwp;
+plan tests => 2, need_lwp;
 
 # non-CSS responses are filtered when we add a single new MIME-Type
 single_mimetype: {

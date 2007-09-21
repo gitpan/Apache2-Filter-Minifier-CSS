@@ -7,7 +7,7 @@ use lib 't';
 use MY::slurp;
 
 # Make sure that non-CSS files get passed through unaltered
-plan tests => 1, have_lwp;
+plan tests => 1, need_lwp;
 
 # Non-CSS file should get passed through unaltered
 non_css_unaltered: {
