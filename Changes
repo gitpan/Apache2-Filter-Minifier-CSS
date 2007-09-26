@@ -1,5 +1,9 @@
 Revision history for Perl extension Apache2::Filter::Minifier::CSS.
 
+1.02    Tue Sep 25 23:33 PDT 2007
+    - added Makefile.PL, so CPANPLUS testers stop failing tests because they
+      don't have Module::Build installed
+
 1.01    Fri Sep 21 13:39 PDT 2007
     - added explicit dependency on MP2
     - updated test requirements to "need_*" instead of "have_*"
