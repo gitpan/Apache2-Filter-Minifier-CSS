@@ -14,7 +14,7 @@ use CSS::Minifier qw(minify);
 
 ###############################################################################
 # Version number.
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 ###############################################################################
 # MIME-Types we're willing to minify.
@@ -37,8 +37,12 @@ sub handler {
         map { $_=>1 } $r->dir_config->get('CssMimeType'),
         );
 
+    # determine Content-Type of document
+    my $ctype = $r->content_type;
+    $ctype =~ s{;.*}{};
+
     # only process CSS documents
-    unless (exists $types{$r->content_type}) {
+    unless (exists $types{$ctype}) {
         $log->info( "skipping request to ", $r->uri, " (not a CSS document)" );
         return Apache2::Const::DECLINED;
     }

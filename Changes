@@ -1,5 +1,13 @@
 Revision history for Perl extension Apache2::Filter::Minifier::CSS.
 
+1.03    Fri Sep 28 11:09 PDT 2007
+    - rewrote Build.PL/Makefile.PL so they now check if you've got Apache::Test
+      installed -at-configuration-time-.  if not, the build is abortted.  One
+      day, CPAN(PLUS) et al. will support "configure_requires", but until then
+      we've got to check for this ourselves.
+    - fixed Content-Type filtering so that it now properly handles HTTP headers
+      that have additional attributes (e.g. "charset=...")
+
 1.02    Tue Sep 25 23:33 PDT 2007
     - added Makefile.PL, so CPANPLUS testers stop failing tests because they
       don't have Module::Build installed
