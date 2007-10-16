@@ -2,6 +2,10 @@ PerlSwitches -w
 LogLevel debug
 DirectoryIndex test.css
 
+<Location />
+    PerlSetVar              CssMinifier     CSS::Minifier
+</Location>
+
 Alias /raw @DocumentRoot@
 <Location /raw>
     PerlOutputFilterHandler Apache2::Filter::Minifier::CSS
@@ -59,4 +63,18 @@ Alias /perl-bin @ServerRoot@/perl-bin
     PerlResponseHandler     ModPerl::Registry
     PerlOutputFilterHandler Apache2::Filter::Minifier::CSS
     Options                 +ExecCGI
+</Location>
+
+<Location /explicit/pp>
+    SetHandler              modperl
+    PerlResponseHandler     MY::CSSHandler
+    PerlOutputFilterHandler Apache2::Filter::Minifier::CSS
+    PerlSetVar              CssMinifier     CSS::Minifier
+</Location>
+
+<Location /explicit/xs>
+    SetHandler              modperl
+    PerlResponseHandler     MY::CSSHandler
+    PerlOutputFilterHandler Apache2::Filter::Minifier::CSS
+    PerlSetVar              CssMinifier     CSS::Minifier::XS
 </Location>
