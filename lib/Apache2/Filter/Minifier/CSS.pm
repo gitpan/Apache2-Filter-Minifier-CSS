@@ -19,7 +19,7 @@ eval { require CSS::Minifier::XS };
 
 ###############################################################################
 # Version number.
-our $VERSION = '1.04_01';
+our $VERSION = '1.04_02';
 
 ###############################################################################
 # MIME-Types we're willing to minify.
@@ -43,8 +43,11 @@ sub handler {
         );
 
     # determine Content-Type of document
-    my $ctype = $r->content_type;
-    $ctype =~ s{;.*}{};
+    my ($ctype) = ($r->content_type =~ /^(.+?)(?:;.*)?$/);
+    unless ($ctype) {
+        $log->info( "unable to determine content type; skipping : URL ", $r->uri );
+        return Apache2::Const::DECLINED;
+    }
 
     # only process CSS documents
     unless (exists $types{$ctype}) {

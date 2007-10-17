@@ -26,10 +26,17 @@ Alias /raw @DocumentRoot@
     PerlAddVar              CssMimeType text/plain
 </Location>
 
-<Location /charset>
+<Location /content-type/charset>
     SetHandler              modperl
     PerlResponseHandler     MY::CharsetHandler
     PerlOutputFilterHandler Apache2::Filter::Minifier::CSS
+</Location>
+
+<Location /content-type/missing>
+    SetHandler              modperl
+    PerlResponseHandler     MY::NoCTypeHandler
+    PerlOutputFilterHandler Apache2::Filter::Minifier::CSS
+    DefaultType             text/missing
 </Location>
 
 <Location /decline_uc>
